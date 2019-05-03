@@ -5,7 +5,7 @@ import re, csv, os
 #OPEN THE DATA FILE
 
 #More details about open function https://stackabuse.com/file-handling-in-python/
-file = open("Dataset/Raw_Data/yelp_labelled.txt",'r+')
+file = open("Dataset/Raw_Data/imdb_labelled.txt",'r+')
 data = file.read()
 #print(data)
 
@@ -40,7 +40,7 @@ for index in range(0,len(sentence_list)-1):
 
     
 field_names = ['Sentence', 'Sentiment']    
-output_csv = open('Dataset/Processed_Data/train_data.csv','a')
+output_csv = open('Dataset/Processed_Data/test_data.csv','a')
 csv_writer = csv.DictWriter(output_csv, lineterminator='\n',  fieldnames=field_names)
 
 for index in range(0,len(sentence_list_final)-1):
