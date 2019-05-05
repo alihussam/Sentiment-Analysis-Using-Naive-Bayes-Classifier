@@ -1,11 +1,10 @@
-import re, csv, os
+import re, csv, os, sys
 
-#FIle exists: https://therenegadecoder.com/code/how-to-check-if-a-file-exists-in-python/
-#re is RegEx module
-#OPEN THE DATA FILE
 
-#More details about open function https://stackabuse.com/file-handling-in-python/
-file = open("Dataset/Raw_Data/imdb_labelled.txt",'r+')
+path_of_file_to_clean = sys.argv[1]
+path_of_clean_file_to_save = sys.argv[2]
+
+file = open(str(path_of_file_to_clean),'r+')
 data = file.read()
 #print(data)
 
@@ -29,6 +28,7 @@ for index in range(0,len(sentence_list)-1):
     #Cleaning out possible punctuation marks
     newsentence = tuple[0].replace('.','')
     newsentence = newsentence.replace(',','')
+    newsentence = newsentence.replace(';','')
     newsentence = newsentence.replace('!','')
     newsentence = newsentence.replace('-','')
     newsentence = newsentence.replace('/','')
@@ -40,7 +40,7 @@ for index in range(0,len(sentence_list)-1):
 
     
 field_names = ['Sentence', 'Sentiment']    
-output_csv = open('Dataset/Processed_Data/test_data.csv','a')
+output_csv = open(str(path_of_clean_file_to_save),'a')
 csv_writer = csv.DictWriter(output_csv, lineterminator='\n',  fieldnames=field_names)
 
 for index in range(0,len(sentence_list_final)-1):
